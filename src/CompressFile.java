@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javax.swing.JProgressBar;
 
 public class CompressFile extends File{
-	private RandomAccessFile file;
 	private JProgressBar progressBar;
 	
 	public CompressFile(String path_file, JProgressBar progressBar) {
@@ -16,6 +15,7 @@ public class CompressFile extends File{
 	// lee un archivo y obtiene los elementos con su frecuencia 
 	@Override
 	public ArrayList<Information> readFile() {
+		RandomAccessFile file;
 		
 	    int element,position,frequency;
 	    float progress, increment;
@@ -59,8 +59,9 @@ public class CompressFile extends File{
 	// escribe un nuevo archivo .huffman con los datos necesarios para luego poder descomprimirlo
 	@Override
 	public String writeFile(ArrayList<Information> list) {
+		RandomAccessFile file;
+		RandomAccessFile newFile;
 		
-		RandomAccessFile file; 
 		int position, element;
 		float progress, increment;
 		String code="";
@@ -69,8 +70,9 @@ public class CompressFile extends File{
 		
 		try {
 	    	file = new RandomAccessFile(path_file,"r");
+	    	
 	    	outFileName = createfileName();
-	    	RandomAccessFile newFile  = new RandomAccessFile(outFileName,"rw");
+	    	newFile  = new RandomAccessFile(outFileName,"rw");
 	   		
 	    	// escribe en el nuevo archivo los elementos con su frecuencia
 	    	for (int i=0; i< list.size() ; i++){

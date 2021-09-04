@@ -1,17 +1,17 @@
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
-import java.awt.Image;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.text.DecimalFormat;
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
+
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -23,10 +23,8 @@ import javax.swing.text.StyleConstants;
 public class Window extends JFrame implements ActionListener{
 	private Container container;
 	private JFileChooser fileChooser;
-	private JButton search, start, message; 
-	private ImageIcon icon , newicon ;
-	private Image img, newimg ; 
-	private JTextField textField,details2;
+	private JButton search, start, message;
+	private JTextField textField;
 	private JTextPane details;
 	private String path_file, detailsText ;
 	private JRadioButton optionCompress, optionDecompress ;
@@ -35,15 +33,10 @@ public class Window extends JFrame implements ActionListener{
 	private Thread hilo;	
 	private Huffman huffman;
 	private File file;
-	private String folder;
+	
 
 	public Window(){
-		JLabel label = null;
-		this.folder = "/assets/";
-		
-		if(label != null)
-			setContentPane(label);
-	    
+
 		setTitle("HUFFMAN");		
 		setSize(475,600);
 		setLocationRelativeTo(null);
@@ -138,7 +131,6 @@ public class Window extends JFrame implements ActionListener{
 	}
 	
 	// evento de los botones
-	@SuppressWarnings("static-access")
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if(event.getSource()==search){ 

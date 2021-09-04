@@ -6,7 +6,6 @@ import javax.swing.JProgressBar;
 
 public class DecompressFile extends File{
 	private long positionFilePointer;
-	private RandomAccessFile file;
 	private JProgressBar progressBar;
 	
 	public DecompressFile(String path_file, JProgressBar progressBar) {
@@ -17,6 +16,7 @@ public class DecompressFile extends File{
 	// lee el archivo .huffman y obtiene los datos necesarios para descomprimirlo
 	@Override
 	public ArrayList<Information> readFile() {
+		RandomAccessFile file;
 		
 	    int element,frequency,bandera;
 	    ArrayList<Information> list = new ArrayList<Information>();
@@ -48,7 +48,8 @@ public class DecompressFile extends File{
 	// escribe un nuevo archivo descomprimido  
 	@Override
 	public String writeFile(ArrayList<Information> list) {
-		
+		RandomAccessFile file;
+		RandomAccessFile newFile;
 		String binary="";
 		String previousBinary="";
 		String newBinary="";
@@ -60,7 +61,7 @@ public class DecompressFile extends File{
 			file = new RandomAccessFile(path_file,"r");
     		outFileName = createfileName();
     		
-    		RandomAccessFile newfile = new RandomAccessFile(outFileName,"rw");
+    		newFile = new RandomAccessFile(outFileName,"rw");
     		file.seek(positionFilePointer); //desplazamiento del puntero
     		
     		progress =2250;
@@ -99,14 +100,14 @@ public class DecompressFile extends File{
     		    	position = searchCode(newBinary,list); // busca el nuevo binario (newBinary) en el Arraylist list
     		    	   
     		    	if(position<list.size()){ // indica que encontro newBinary en list
-    		    		newfile.write(list.get(position).getElement());// escribe el elemento que corresponde con el codigo binario
+    		    		newFile.write(list.get(position).getElement());// escribe el elemento que corresponde con el codigo binario
     		    		newBinary="";
     		    	}
     		    } 
                 previousBinary = newBinary; // vuelve a empezar el ciclo
                 newBinary="";
     	}
-    	newfile.close();
+    	newFile.close();
     	file.close();
     	
 		}catch(IOException io) { System.err.println("Problem " + path_file); }
