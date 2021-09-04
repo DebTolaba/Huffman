@@ -1,2 +1,2 @@
-# Algoritmo de Huffman para compresión de archivos
-Proyecto desarrollado en Java con GUI en Eclipse.
+# Huffman
+Este proyecto implementa el algoritmo de Huffman para la compresión/descompresión de archivos en Java con GUI en Eclipse.
